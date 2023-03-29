@@ -1,4 +1,4 @@
-ARG matomo_version=4.13.0
+ARG matomo_version=4.14.1
 
 FROM matomo:${matomo_version} as build-stage
 
