@@ -4,12 +4,7 @@ FROM matomo:${matomo_version} as build-stage
 
 WORKDIR /var/www/html
 
-RUN rm -rf *
+ADD matomo-cron.sh /var/www/html/matomo-cron.sh
+ADD entrypoint.sh /entrypoint.sh
 
-RUN curl -fsSL -o matomo.tar.gz \
-		"https://builds.matomo.org/matomo-${MATOMO_VERSION}.tar.gz"
-
-RUN tar -xzf matomo.tar.gz
-RUN rm matomo.tar.gz
-
-RUN chown -R www-data:www-data /var/www/html/matomo
+CMD ["apache2-foreground"]
